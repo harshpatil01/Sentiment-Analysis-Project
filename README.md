@@ -8,22 +8,22 @@ We compare multiple ML models to find the best-performing one and deploy the fin
 
 ---
 
-## 📊 Table of Contents  
-- [Dataset Overview](#dataset-overview)  
-- [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)  
-- [Data Preprocessing](#data-preprocessing)  
-- [Machine Learning Models](#machine-learning-models)  
-- [Model Evaluation & Results](#model-evaluation--results)  
-- [Deployment Using Streamlit](#deployment-using-streamlit)  
-- [Installation & Usage](#installation--usage)  
-- [Visualizations & Insights](#visualizations--insights)  
-- [Future Improvements](#future-improvements)  
-- [Conclusion](#conclusion)  
+## 📊 Table of Contents
+- [Dataset Overview](#dataset-overview)
+- [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
+- [Data Preprocessing](#data-preprocessing)
+- [Machine Learning Models](#machine-learning-models)
+- [Model Evaluation & Results](#model-evaluation--results)
+- [Deployment Using Streamlit](#deployment-using-streamlit)
+- [Installation & Usage](#installation--usage)
+- [Conclusion](#conclusion)
+
 
 ---
 
 ## 📂 Dataset Overview  
 **Dataset:** *Amazon Fine Food Reviews*  
+https://snap.stanford.edu/data/web-FineFoods.html
 
 ### **📌 Context**  
 This dataset consists of **Amazon fine food reviews**, covering a period of **10+ years** (1999 - 2012). The dataset includes **product and user information, review scores, and plain text reviews**. It also contains reviews from **all Amazon categories**.  
@@ -236,9 +236,7 @@ for name, model in models.items():
     y_pred = model.predict(X_test)
     plot_conf_matrix(y_test, y_pred, name)
 ```
-## 📌 Visualizing Confusion Matrices  
-Confusion matrices provide deeper insights into the classification performance of each model.  
-By visualizing these matrices, we can analyze how well the models distinguish between **positive** and **negative** reviews.
+
 
 
 
@@ -246,13 +244,23 @@ By visualizing these matrices, we can analyze how well the models distinguish be
 
 To make the sentiment analysis model accessible, we deployed it using **Streamlit**, allowing users to interact with the model through a simple web interface.
 
+
 ### 🔹 How to Run the App Locally  
 
 ```sh
 streamlit run app/deployment.py
 ```
 
-***🏆 Conclusion***
+## Installation & Usage
+
+### Clone the Repository
+
+```sh
+git clone https://github.com/your-username/Sentiment-Analysis-Project.git
+cd Sentiment-Analysis-Project
+```
+
+## 🏆 Conclusion
 
 🎯 ***XGBoost*** performed the best, achieving 90% accuracy.
 🎯 ***NLP-based Sentiment Analysis*** provides valuable insights into customer opinions.
