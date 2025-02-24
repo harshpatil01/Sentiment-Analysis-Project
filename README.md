@@ -253,6 +253,7 @@ streamlit run app/deployment.py
 
 ## Installation & Usage
 
+
 ### Clone the Repository
 
 ```sh
@@ -263,5 +264,7 @@ cd Sentiment-Analysis-Project
 ## 🏆 Conclusion
 
 🎯 ***XGBoost*** performed the best, achieving 90% accuracy.
+
 🎯 ***NLP-based Sentiment Analysis*** provides valuable insights into customer opinions.
+
 🎯 ***Future Improvements*** can enhance accuracy, scalability, and real-time performance.
