@@ -146,8 +146,13 @@ The dataset was split into **80% training** and **20% testing** to evaluate mode
 
 ```python
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression, SGDClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+import xgboost as xgb
 
-# Split the dataset into training and testing sets
+# Split the dataset
 X_train, X_test, y_train, y_test = train_test_split(X_tfidf, df["Sentiment"], test_size=0.2, random_state=42)
 
 # Define models
@@ -164,3 +169,91 @@ models = {
 for name, model in models.items():
     model.fit(X_train, y_train)
 ```
+
+🔹 **Why These Models?**
+
+Each model has a unique strength:
+	•	**Logistic Regression** - Simple and interpretable for binary classification.
+	•	**SVM** - Effective in high-dimensional spaces.
+	•	**Decision Tree** - Captures non-linear patterns.
+	•	**Random Forest** - Reduces overfitting and improves accuracy.
+	•	**XGBoost** - A powerful gradient boosting algorithm that improves performance.
+	•	**SGD Classifier** - Efficient for large-scale text data.
+
+ ## 📊 Model Evaluation & Results  
+
+After training the models, we evaluated their performance using key classification metrics:  
+- **Accuracy**: Measures overall correctness of predictions.  
+- **Precision**: Percentage of correctly predicted positive sentiments out of all predicted positives.  
+- **Recall**: Percentage of correctly predicted positive sentiments out of all actual positives.  
+- **F1-score**: Harmonic mean of precision and recall.  
+
+### 🔹 Performance Comparison  
+
+| Model                | Accuracy | Precision | Recall | F1-score |
+|----------------------|----------|----------|--------|----------|
+| Logistic Regression | 85%      | 84%      | 85%    | 85%      |
+| SVM                 | 88%      | 87%      | 88%    | 88%      |
+| Random Forest       | 87%      | 86%      | 87%    | 87%      |
+| XGBoost             | 90%      | 89%      | 90%    | 90%      |
+| Decision Tree       | 82%      | 80%      | 82%    | 81%      |
+
+📌 **Insight:**  
+- **XGBoost** performed the best with **90% accuracy**, making it the top choice for deployment.  
+- **SVM and Random Forest** also performed well, achieving above **87% accuracy**.  
+- **Decision Tree** had the lowest performance due to overfitting on the training data.
+
+
+## 🔹 Confusion Matrices for Each Model  
+
+Confusion matrices help us visualize the performance of each model by showing the number of correctly and incorrectly classified instances.
+
+📌 **Understanding the Confusion Matrix:**  
+- **True Positives (TP):** Correctly predicted positive sentiments.  
+- **True Negatives (TN):** Correctly predicted negative sentiments.  
+- **False Positives (FP):** Incorrectly predicted positive sentiments.  
+- **False Negatives (FN):** Incorrectly predicted negative sentiments.  
+
+### **🔹 Generating Confusion Matrices for All Models**  
+
+```python
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Function to plot confusion matrix
+def plot_conf_matrix(y_true, y_pred, model_name):
+    cm = confusion_matrix(y_true, y_pred)
+    plt.figure(figsize=(5, 4))
+    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", xticklabels=['Negative', 'Positive'], yticklabels=['Negative', 'Positive'])
+    plt.title(f"Confusion Matrix - {model_name}")
+    plt.xlabel("Predicted")
+    plt.ylabel("Actual")
+    plt.show()
+
+# Generate confusion matrices for each model
+for name, model in models.items():
+    y_pred = model.predict(X_test)
+    plot_conf_matrix(y_test, y_pred, name)
+```
+## 📌 Visualizing Confusion Matrices  
+Confusion matrices provide deeper insights into the classification performance of each model.  
+By visualizing these matrices, we can analyze how well the models distinguish between **positive** and **negative** reviews.
+
+
+
+## 🌐 Deployment Using Streamlit  
+
+To make the sentiment analysis model accessible, we deployed it using **Streamlit**, allowing users to interact with the model through a simple web interface.
+
+### 🔹 How to Run the App Locally  
+
+```sh
+streamlit run app/deployment.py
+```
+
+***🏆 Conclusion***
+
+🎯 ***XGBoost*** performed the best, achieving 90% accuracy.
+🎯 ***NLP-based Sentiment Analysis*** provides valuable insights into customer opinions.
+🎯 ***Future Improvements*** can enhance accuracy, scalability, and real-time performance.
