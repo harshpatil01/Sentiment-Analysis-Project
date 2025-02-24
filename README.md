@@ -75,7 +75,21 @@ plt.title("Distribution of Review Scores")
 plt.xlabel("Score (1-5)")
 plt.ylabel("Count")
 plt.show()
-
+```
 📌 Insight: More positive reviews than negative ones.
 
+## 📊 Exploratory Data Analysis (EDA)
 
+### **2️⃣ Most Frequent Words in Reviews**
+```python
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+
+text = " ".join(review for review in df['Text'])
+wordcloud = WordCloud(width=800, height=400, background_color="white").generate(text)
+
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis("off")
+plt.show()
+```
