@@ -279,3 +279,7 @@ streamlit run app.py
 🎯 ***NLP-based Sentiment Analysis*** provides valuable insights into customer opinions.
 
 🎯 ***Future Improvements*** can enhance accuracy, scalability, and real-time performance.
+
+## License
+
+Code is released under the [MIT License](LICENSE). Datasets keep their original source licences.
